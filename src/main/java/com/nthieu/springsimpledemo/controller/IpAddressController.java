@@ -17,6 +17,7 @@ public class IpAddressController {
 
     @GetMapping("/{ipAddress}")
     public String getIpAddressInfo(@PathVariable String ipAddress) {
+        log.info("Calling API to get Geo-location info for {}.", ipAddress);
         return ipAddressService.getInfoForIpAddress(ipAddress);
     }
 }
