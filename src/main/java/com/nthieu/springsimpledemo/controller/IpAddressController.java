@@ -14,7 +14,6 @@ public class IpAddressController {
 
     @GetMapping
     public String getIpAddressInfo(HttpServletRequest request) {
-        log.info("New Request comes: " + request);
         String ipAddress = request.getHeader("X-Forward-For");
         if (ipAddress == null) {
             ipAddress = request.getRemoteAddr();
