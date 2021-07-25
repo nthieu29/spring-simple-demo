@@ -1,23 +1,22 @@
 package com.nthieu.springsimpledemo.controller;
 
+import com.nthieu.springsimpledemo.service.IpAddressService;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("ip-addresses")
 @Slf4j
+@AllArgsConstructor
 public class IpAddressController {
+    private final IpAddressService ipAddressService;
 
-    @GetMapping
-    public String getIpAddressInfo(HttpServletRequest request) {
-        String ipAddress = request.getHeader("X-Forward-For");
-        if (ipAddress == null) {
-            ipAddress = request.getRemoteAddr();
-        }
-        return ipAddress;
+    @GetMapping("/{ipAddress}")
+    public String getIpAddressInfo(@PathVariable String ipAddress) {
+        return ipAddressService.getInfoForIpAddress(ipAddress);
     }
 }
