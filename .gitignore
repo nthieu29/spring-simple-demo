@@ -13,3 +13,4 @@ buildNumber.properties
 /spring-simple-demo.iml
 /newrelic/
 /logs/
+/application-insights/
